@@ -1,0 +1,37 @@
+{% load staticfiles %}
+<html lang="en">
+    <head>
+        <title>Dog Matchmaking</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+        <style>
+        .page-header {
+            padding: 2em;
+            color: lightgrey;
+            background: black;
+        }
+
+        #title:hover {
+            text-decoration: none;
+        }
+
+        body > .container {
+            padding-top: 3em;
+        }
+        </style>
+    
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a id="title" href="{% url 'index' %}" style='color: lightgrey;'>Dog Matchmaking</a></h1>
+        </div>
+
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
