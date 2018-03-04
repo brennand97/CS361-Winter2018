@@ -1,0 +1,122 @@
+[
+    {
+        "model": "matchmaking.location",
+        "pk": 1,
+        "fields": {
+            "city": "Corvallis",
+            "state": "OR",
+            "zipcode": "97331"
+        }
+    },
+    
+    {
+        "model": "matchmaking.location",
+        "pk": 2,
+        "fields": {
+            "city": "Corvallis",
+            "state": "OR",
+            "zipcode": "97333"
+        }
+    },
+    
+    {
+        "model": "matchmaking.personalityqualities",
+        "pk": 1,
+        "fields": {
+            "friendly": true,
+            "kid_friendly": true,
+            "likes_water": true,
+            "likes_cars": false,
+            "socialized": true,
+            "rescue_animal": false
+        }
+    },
+    
+    {
+        "model": "matchmaking.personalityqualities",
+        "pk": 2,
+        "fields": {
+            "friendly": true,
+            "kid_friendly": false,
+            "likes_water": false,
+            "likes_cars": true,
+            "socialized": false,
+            "rescue_animal": true
+        }
+    },
+    
+    {
+        "model": "matchmaking.physicalqualities",
+        "pk": 1,
+        "fields": {
+            "color": "Yellow",
+            "height": 48.0,
+            "weight": 70.0,
+            "eye_color": "Brown",
+            "hypoallergenic": false,
+            "shedding": true
+        }
+    },
+    
+    {
+        "model": "matchmaking.physicalqualities",
+        "pk": 2,
+        "fields": {
+            "color": "Light Brown",
+            "height": 10.0, 
+            "weight": 20.0,
+            "eye_color": "Brown", 
+            "hypoallergenic": false, 
+            "shedding": true
+        }
+    },
+    
+    {
+        "model": "matchmaking.dog",
+        "pk": 1,
+        "fields": {
+            "name": "Buddy",
+            "sex": "m",
+            "age": 5,
+            "breed": "Golden Lab",
+            "bio": "Buddy is a dog, this is his bio.",
+            "location": 1,
+            "personality": 1,
+            "physical": 1
+        }
+    },
+    
+    {
+        "model": "matchmaking.dog",
+        "pk": 2,
+        "fields": {
+            "name": "Fluff",
+            "sex": "f",
+            "age": 9,
+            "breed": "Pug",
+            "bio": "I am a pug (\u274d\u1d25\u274d\u028b)",
+            "location": 2,
+            "personality": 2,
+            "physical": 2
+        }
+    },
+    
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$100000$YuyG3v750Zlf$s2KIgI+9Lc5OhCERVdrkEmd+37C6Bpoptk65AROzT9E=",
+            "last_login": "2018-03-04T06:47:27.564Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@email.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2018-03-04T06:11:14.166Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]

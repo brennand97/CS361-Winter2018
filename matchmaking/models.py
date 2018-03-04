@@ -32,12 +32,22 @@ class Location(Model):
     state   = CharField(max_length=2, choices=map(lambda a: (a,a), states), null=False)
     zipcode = CharField(max_length=32, null=False)
 
+    def __str__(self):
+        return 'Location: {}, {} {}'.format(self.city, self.state, self.zipcode)
+
 
 class ContactInfo(Model):
 
     phone_number = CharField(max_length=16, null=True)
     email        = CharField(max_length=256, null=False)
     website      = CharField(max_length=256, null=True)
+
+    def __str__(self):
+        return 'ContactInfo: {}; {}; {}'.format(self.phone_number, self.email, self.website)
+
+
+def user_to_str(user):
+    return 'User: {} {}; {}'.format(user.first_name, user.last_name, user.username)
 
 
 class UserProfile(Model):
@@ -59,6 +69,9 @@ class UserProfile(Model):
     location     = ForeignKey(Location, on_delete=CASCADE, null=True)
     contact_info = ForeignKey(ContactInfo, on_delete=CASCADE, null=False)
 
+    def __str__(self):
+        return user_to_str(self.user)
+
 
 class Shelter(Model):
 
@@ -66,6 +79,9 @@ class Shelter(Model):
     location     = ForeignKey(Location, on_delete=CASCADE, null=False)
     contact_info = ForeignKey(ContactInfo, on_delete=CASCADE, null=False)
     verified     = BooleanField(null=False, default=False)
+
+    def __str__(self):
+        return 'Shelter: {} (v: {})'.format(self.name, int(self.verified))
 
 
 class PersonalityQualities(Model):
@@ -77,6 +93,18 @@ class PersonalityQualities(Model):
     socialized    = BooleanField(default=False)
     rescue_animal = BooleanField(default=False)
 
+    def __str__(self):
+        return 'Personality: f: {0}, kf: {1}, lw: {2}, lc: {3}, s: {4}, ra: {5}'.format(
+            *list(map(lambda a: int(a), [
+                self.friendly,
+                self.kid_friendly,
+                self.likes_water,
+                self.likes_cars,
+                self.socialized,
+                self.rescue_animal
+            ]))
+        )
+
 
 class PhysicalQualities(Model):
     color          = CharField(max_length=64, null=True)
@@ -86,11 +114,27 @@ class PhysicalQualities(Model):
     hypoallergenic = BooleanField(default=False)
     shedding       = BooleanField(default=True)
 
+    def __str__(self):
+        return 'Physical: c: {}, h: {}, w: {}, ec: {}, hypo: {}, shed: {}'.format(
+            self.color,
+            self.height,
+            self.weight,
+            self.eye_color,
+            int(self.hypoallergenic),
+            int(self.shedding)
+        )
+
 
 class Dog(Model):
 
+    MALE = "m"
+    FEMALE = "f"
+
     name        = CharField(max_length=256, null=False)
-    sex         = CharField(max_length=16, null=False)
+    sex         = CharField(max_length=1, choices=(
+                                    (MALE, "Male"),
+                                    (FEMALE, "Female")
+                                ), null=False)
     age         = IntegerField(null=False)
     breed       = CharField(max_length=256, null=True)
     bio         = TextField(null=True)
@@ -98,6 +142,9 @@ class Dog(Model):
     location    = ForeignKey(Location, on_delete=CASCADE, null=False)
     personality = ForeignKey(PersonalityQualities, on_delete=CASCADE, null=False)
     physical    = ForeignKey(PhysicalQualities, on_delete=CASCADE, null=False)
+
+    def __str__(self):
+        return 'Dog: {}, {}, {}, {}'.format(self.name, self.sex, self.age, self.breed)
 
 
 class Message(Model):
@@ -112,9 +159,14 @@ class Message(Model):
                            related_name='user_from',
                            null=False)
 
+    def __str__(self):
+        return 'Message: {} to {}'.format(self.user_from, self.user_to)
 
 class Payment(Model):
 
     user_profile = ForeignKey(UserProfile, on_delete=CASCADE, null=False)
     shelter      = ForeignKey(Shelter, on_delete=CASCADE, null=False)
     amount       = DecimalField(max_digits=15, decimal_places=2)
+
+    def __str__(self):
+        return 'Payment: {} from {} to {}'.format(self.amount, self.user_profile, self.shelter)
