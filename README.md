@@ -8,4 +8,5 @@ Oregon State University CS361 Winter 2018 group project.
     1. `python manage.py makemigrations`
     2. `python manage.py migrate`
 4. Create an superuser with `python manage.py createsuperuser` -- this is used to log in to the admin interface at '\admin'.
-5. Finally, run the development server with `python manage.py runserver`.
+5. Run the development server with `python manage.py runserver`.
+6. Navigate your browser to http://localhost:8000.
