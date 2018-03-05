@@ -1,3 +1,14 @@
-h5 {
-    color: green;
+input[type=submit], input[type=reset] {
+    padding: 10px 20px;
+    margin: 10px 10px 10px 0px;
+    border-radius: 3px;
+    border-color: green;
+    background-color: #defcea;
+    border-width: 2px;
+    width: 100px;
+}
+
+input[type=reset] {
+    border-color: grey;
+    background-color: #FFF;
 }
