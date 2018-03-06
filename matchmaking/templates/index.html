@@ -77,7 +77,8 @@
 	<div id="content">
         <h3>Dog Matchmaking Search Results</h3>
         <hr><br>
-        {% include "search.html" %}
+        {% block results %}
+        {% endblock %}
     </div>
 </div>    
 {% endblock %}

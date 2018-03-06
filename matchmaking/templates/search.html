@@ -1,3 +1,6 @@
+{% extends 'index.html' %}
+
+{% block results %}
 <div id="results">
     {% for dog in dogs %}
         <h5><a href=#><strong>Name: </strong>  {{dog.name}} </a></h5>
@@ -7,3 +10,4 @@
         <p><strong>Bio: </strong> {{dog.bio}} </p>
     {% endfor %}
 </div>
+{% endblock %}

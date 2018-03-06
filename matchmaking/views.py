@@ -23,4 +23,4 @@ def search(request, zipcode):
 
 #    return HttpResponse(data, content_type='application/json')
 
-    return render(request, 'index.html', {'dogs': dogs})
+    return render(request, 'search.html', {'dogs': dogs})
