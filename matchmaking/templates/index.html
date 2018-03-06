@@ -16,7 +16,10 @@
         <h5>Please select the traits you'd like in your dog.</h5>
         <br>
         <!-- ### url needs to be set -->
-        <form action="https://www.w3schools.com/action_page.php" method="POST" target="_blank" id="form1">
+        <form action="{% url 'search' '97333' %}" method="POST" target="_blank" id="form1">
+
+            {% csrf_token %}
+
             <fieldset>
                 <legend>Location</legend>
                 City <br>
