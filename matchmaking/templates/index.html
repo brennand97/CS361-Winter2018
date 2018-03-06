@@ -8,52 +8,73 @@
 {% block content %}
 
     <!-- <h5>{{ message }}</h5> -->
-<h3>Welcome!</h3>
-<h5>Please select the traits you'd like in your dog.</h5>
-<br><br>
-    <form action="https://www.w3schools.com/action_page.php" method="POST" target="_blank" id="form1">
-        <fieldset>
-            <legend>Physical Traits</legend>
-            Sex <br>
-            <input type="radio" name="sex" value="female"> Female<br>
-            <input type="radio" name="sex" value="male"> Male<br><br>
-            Color <br>
-            <input type="text" name="fav_color"><br><br>
-            Height range <br>
-            <select>
-                <option name="height" value="short">Less than 2 ft.</option>
-                <option name="height" value="average">2 - 3 ft.</option>
-                <option name="height" value="tall">More than 3 ft.</option>
-            </select><br><br>
-            Weight range <br>
-            <select>
-                <option name="weight" value="small">Less than 25 lbs</option>
-                <option name="weight" value="medium">25 - 50 lbs</option>
-                <option name="weight" value="large">50 - 100 lbs</option>
-            </select><br><br>
-            Eye color <br>
-            <select>
-                <option name="eye_color" value="black">Black</option>
-                <option name="eye_color" value="brown">Brown</option>
-                <option name="eye_color" value="grey">Grey</option>
-                <option name="eye_color" value="green">Green</option>
-                <option name="eye_color" value="blue">Blue</option>
-                <option name="eye_color" value="yellow">Yellow</option>
-            </select><br><br>
-            <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic<br><br>
-            <input type="checkbox" name="shedding" value="true"> Shedding<br><br>
-        </fieldset>
-        <fieldset>
-            <legend>Personality Traits</legend>
-            <input type="checkbox" name="friendly" value="true"> Friendly<br><br>
-            <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br><br>
-            <input type="checkbox" name="likes_water" value="true"> Likes Water<br><br>
-            <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br><br>
-            <input type="checkbox" name="socialized" value="true"> Socialized<br><br>
-            <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
-        </fieldset>
-        <input class="button1" type="reset" value="RESET">
-        <input class="button1" type="submit" value="SUBMIT">
-    </form>
-    
+<div id="outer-container">
+    <!-- This is the left sidebar holding the search filters -->
+    <!-- ### input names have not been validated -->
+	<div id="sidebar">
+        <h3>Welcome!</h3>
+        <h5>Please select the traits you'd like in your dog.</h5>
+        <br>
+        <!-- ### url needs to be set -->
+        <form action="https://www.w3schools.com/action_page.php" method="POST" target="_blank" id="form1">
+            <fieldset>
+                <legend>Location</legend>
+                City <br>
+                <input type="text" name="city"><br><br>
+                <!-- ### Need to update state to drop down with Django's tags-->
+                State <br>
+                <input type="text" name="state"><br><br>
+                Zip <br>
+                <input type="text" name="city"><br><br>
+            </fieldset>
+            <fieldset>
+                <legend>Physical Traits</legend>
+                Sex <br>
+                <input type="radio" name="sex" value="female"> Female<br>
+                <input type="radio" name="sex" value="male"> Male<br><br>
+                Color <br>
+                <input type="text" name="fav_color"><br><br>
+                Height range <br>
+                <select>
+                    <option name="height" value="short">Less than 2 ft.</option>
+                    <option name="height" value="average">2 - 3 ft.</option>
+                    <option name="height" value="tall">More than 3 ft.</option>
+                </select><br><br>
+                Weight range <br>
+                <select>
+                    <option name="weight" value="small">Less than 25 lbs</option>
+                    <option name="weight" value="medium">25 - 50 lbs</option>
+                    <option name="weight" value="large">50 - 100 lbs</option>
+                </select><br><br>
+                Eye color <br>
+                <select>
+                    <option name="eye_color" value="black">Black</option>
+                    <option name="eye_color" value="brown">Brown</option>
+                    <option name="eye_color" value="grey">Grey</option>
+                    <option name="eye_color" value="green">Green</option>
+                    <option name="eye_color" value="blue">Blue</option>
+                    <option name="eye_color" value="yellow">Yellow</option>
+                </select><br><br>
+                <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic<br><br>
+                <input type="checkbox" name="shedding" value="true"> Shedding<br><br>
+            </fieldset>
+            <fieldset>
+                <legend>Personality Traits</legend>
+                <input type="checkbox" name="friendly" value="true"> Friendly<br><br>
+                <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br><br>
+                <input type="checkbox" name="likes_water" value="true"> Likes Water<br><br>
+                <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br><br>
+                <input type="checkbox" name="socialized" value="true"> Socialized<br><br>
+                <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
+            </fieldset>
+            <input class="button1" type="reset" value="RESET">
+            <input class="button1" type="submit" value="SEARCH">
+        </form>
+    </div>
+	<div id="content">
+        <h3>Dog Matchmaking Search Results</h3>
+        <!-- ### need to retrieve Http response and display preview info for each dog -->
+        <h5>... search results here ...</h5>
+    </div>
+</div>    
 {% endblock %}
