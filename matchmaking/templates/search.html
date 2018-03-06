@@ -1,0 +1,9 @@
+<div id="results">
+    {% for dog in dogs %}
+        <h5><a href=#><strong>Name: </strong>  {{dog.name}} </a></h5>
+        <p><strong>Sex: </strong> {{dog.sex}} </p>
+        <p><strong>Age: </strong> {{dog.age}} </p>
+        <p><strong>Breed: </strong> {{dog.breed}} </p>
+        <p><strong>Bio: </strong> {{dog.bio}} </p>
+    {% endfor %}
+</div>

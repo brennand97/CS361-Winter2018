@@ -6,16 +6,13 @@
 {% endblock %}
 
 {% block content %}
-
-    <!-- <h5>{{ message }}</h5> -->
 <div id="outer-container">
     <!-- This is the left sidebar holding the search filters -->
 	<div id="sidebar">
         <h3>Welcome!</h3>
         <h5>Please select the traits you'd like in your dog.</h5>
         <br>
-        <!-- ### url needs to be set -->
-        <form action="{% url 'search' '97333' %}" method="POST" target="_blank" id="form1">
+        <form action="{% url 'search' '97333' %}" method="POST" id="form1">
 
             {% csrf_token %}
 
@@ -79,8 +76,8 @@
     </div>
 	<div id="content">
         <h3>Dog Matchmaking Search Results</h3>
-        <!-- ### need to retrieve Http response and display preview info for each dog -->
-        <h5>... search results here ...</h5>
+        <hr><br>
+        {% include "search.html" %}
     </div>
 </div>    
 {% endblock %}
