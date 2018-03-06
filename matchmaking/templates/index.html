@@ -10,7 +10,6 @@
     <!-- <h5>{{ message }}</h5> -->
 <div id="outer-container">
     <!-- This is the left sidebar holding the search filters -->
-    <!-- ### input names have not been validated -->
 	<div id="sidebar">
         <h3>Welcome!</h3>
         <h5>Please select the traits you'd like in your dog.</h5>
@@ -23,34 +22,38 @@
             <fieldset>
                 <legend>Location</legend>
                 City <br>
-                <input type="text" name="city"><br><br>
+                <input type="text" name="city"><br>
                 <!-- ### Need to update state to drop down with Django's tags-->
                 State <br>
-                <input type="text" name="state"><br><br>
+                <input type="text" name="state"><br>
                 Zip <br>
-                <input type="text" name="city"><br><br>
+                <input type="text" name="zipcode"><br><br>
             </fieldset>
             <fieldset>
                 <legend>Physical Traits</legend>
                 Sex <br>
-                <input type="radio" name="sex" value="female"> Female<br>
-                <input type="radio" name="sex" value="male"> Male<br><br>
+                <input type="radio" name="sex" value="either"> Either<br>
+                <input type="radio" name="sex" value="f"> Female<br>
+                <input type="radio" name="sex" value="m"> Male<br><br>
                 Color <br>
-                <input type="text" name="fav_color"><br><br>
+                <input type="text" name="color"><br><br>
                 Height range <br>
                 <select>
+                    <option name="height" value="any">No preference</option>
                     <option name="height" value="short">Less than 2 ft.</option>
                     <option name="height" value="average">2 - 3 ft.</option>
                     <option name="height" value="tall">More than 3 ft.</option>
                 </select><br><br>
                 Weight range <br>
                 <select>
+                    <option name="weight" value="any">No preference</option>
                     <option name="weight" value="small">Less than 25 lbs</option>
                     <option name="weight" value="medium">25 - 50 lbs</option>
                     <option name="weight" value="large">50 - 100 lbs</option>
                 </select><br><br>
                 Eye color <br>
                 <select>
+                    <option name="eye_color" value="any">No preference</option>
                     <option name="eye_color" value="black">Black</option>
                     <option name="eye_color" value="brown">Brown</option>
                     <option name="eye_color" value="grey">Grey</option>
@@ -58,16 +61,16 @@
                     <option name="eye_color" value="blue">Blue</option>
                     <option name="eye_color" value="yellow">Yellow</option>
                 </select><br><br>
-                <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic<br><br>
+                <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic<br>
                 <input type="checkbox" name="shedding" value="true"> Shedding<br><br>
             </fieldset>
             <fieldset>
                 <legend>Personality Traits</legend>
-                <input type="checkbox" name="friendly" value="true"> Friendly<br><br>
-                <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br><br>
-                <input type="checkbox" name="likes_water" value="true"> Likes Water<br><br>
-                <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br><br>
-                <input type="checkbox" name="socialized" value="true"> Socialized<br><br>
+                <input type="checkbox" name="friendly" value="true"> Friendly<br>
+                <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br>
+                <input type="checkbox" name="likes_water" value="true"> Likes Water<br>
+                <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br>
+                <input type="checkbox" name="socialized" value="true"> Socialized<br>
                 <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
             </fieldset>
             <input class="button1" type="reset" value="RESET">
