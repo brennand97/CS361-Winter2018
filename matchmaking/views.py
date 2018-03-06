@@ -16,10 +16,9 @@ def index(request):
 
 def search(request, zipcode):
     
-    location = Location.objects.get(zipcode=zipcode)
-    dogs = Dog.objects.filter(location=location)
+    locations = Location.objects.filter(zipcode=zipcode)
+    dogs = Dog.objects.filter(location__in=locations)
    
     data = serializers.serialize("json", dogs)
 
     return HttpResponse(data, content_type='application/json')
-
