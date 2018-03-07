@@ -3,6 +3,7 @@
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<script type="text/javascript" src="{% static 'scripts.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -12,7 +13,7 @@
         <h3>Welcome!</h3>
         <h5>Please select the traits you'd like in your dog.</h5>
         <br>
-        <form action="{% url 'search' '97333' %}" method="POST" id="form1">
+        <form method="POST" id="form1">
 
             {% csrf_token %}
 
@@ -24,7 +25,7 @@
                 State <br>
                 <input type="text" name="state"><br>
                 Zip <br>
-                <input type="text" name="zipcode"><br><br>
+                <input type="text" name="zipcode" id = "zipcode"><br><br>
             </fieldset>
             <fieldset>
                 <legend>Physical Traits</legend>
@@ -71,7 +72,7 @@
                 <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
             </fieldset>
             <input class="button1" type="reset" value="RESET">
-            <input class="button1" type="submit" value="SEARCH">
+            <input class="button1" type="submit" value="SEARCH" id = "submit">
         </form>
     </div>
 	<div id="content">
