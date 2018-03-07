@@ -9,10 +9,13 @@ import json
 """
 This function reduces the nasty json that the Django serailizer produces
 to objects that only contain the fields.
+
 Example usage:
+
 dogs = Dog.objects.filter(location__in=locations)
 data = serializers.serialize("json", dogs)
 data = json.dumps(reduce_json(json.loads(data)))
+
 """
 
 def reduce_json(data):
