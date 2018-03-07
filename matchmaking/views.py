@@ -18,9 +18,6 @@ def search(request, zipcode):
     
     locations = Location.objects.filter(zipcode=zipcode)
     dogs = Dog.objects.filter(location__in=locations)
-   
-#    data = serializers.serialize("json", dogs)
-
-#    return HttpResponse(data, content_type='application/json')
-
-    return render(request, 'search.html', {'dogs': dogs})
+    #data = serializers.serialize("json", dogs)
+    #return HttpResponse(data, content_type='application/json')
+    return HttpResponse(list(dogs), content_type='application/json')
