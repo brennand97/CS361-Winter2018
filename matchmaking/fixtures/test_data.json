@@ -70,6 +70,19 @@
             "shedding": true
         }
     },
+
+    {
+        "model": "matchmaking.physicalqualities",
+        "pk": 3,
+        "fields": {
+            "color": "Light Brown",
+            "height": 60.0, 
+            "weight": 100.0,
+            "eye_color": "Brown", 
+            "hypoallergenic": false, 
+            "shedding": true
+        }
+    },
     
     {
         "model": "matchmaking.dog",
@@ -95,6 +108,21 @@
             "age": 9,
             "breed": "Pug",
             "bio": "I am a pug (\u274d\u1d25\u274d\u028b)",
+            "location": 2,
+            "personality": 2,
+            "physical": 2
+        }
+    },
+
+    {
+        "model": "matchmaking.dog",
+        "pk": 3,
+        "fields": {
+            "name": "Rex",
+            "sex": "m",
+            "age": 3,
+            "breed": "German Shepherd",
+            "bio": "Rex, Rex, Rex",
             "location": 2,
             "personality": 2,
             "physical": 2
