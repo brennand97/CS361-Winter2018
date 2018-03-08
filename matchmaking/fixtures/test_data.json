@@ -26,9 +26,9 @@
             "friendly": true,
             "kid_friendly": true,
             "likes_water": true,
-            "likes_cars": false,
+            "likes_cars": true,
             "socialized": true,
-            "rescue_animal": false
+            "rescue_animal": true
         }
     },
     
@@ -42,6 +42,19 @@
             "likes_cars": true,
             "socialized": false,
             "rescue_animal": true
+        }
+    },
+
+    {
+        "model": "matchmaking.personalityqualities",
+        "pk": 3,
+        "fields": {
+            "friendly": true,
+            "kid_friendly": false,
+            "likes_water": true,
+            "likes_cars": true,
+            "socialized": true,
+            "rescue_animal": false
         }
     },
     
@@ -75,12 +88,12 @@
         "model": "matchmaking.physicalqualities",
         "pk": 3,
         "fields": {
-            "color": "Light Brown",
-            "height": 60.0, 
-            "weight": 100.0,
-            "eye_color": "Brown", 
-            "hypoallergenic": false, 
-            "shedding": true
+            "color": "Yellow",
+            "height": 10.0, 
+            "weight": 15.0,
+            "eye_color": "Blue", 
+            "hypoallergenic": true, 
+            "shedding": false
         }
     },
     
@@ -98,10 +111,25 @@
             "physical": 1
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 2,
+        "fields": {
+            "name": "Sue",
+            "sex": "f",
+            "age": 1,
+            "breed": "Golden Lab",
+            "bio": "Sue is a puppy",
+            "location": 1,
+            "personality": 3,
+            "physical": 3
+        }
+    },
+    
+    {
+        "model": "matchmaking.dog",
+        "pk": 3,
         "fields": {
             "name": "Fluff",
             "sex": "f",
