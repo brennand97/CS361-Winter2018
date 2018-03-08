@@ -45,6 +45,8 @@ function bindSubmit(){
 				}
 
 				for (i=0; i < response.length; i++){
+					var container = document.createElement('div')
+					container.className = "dogContainer"
 					var dog = document.createElement("div")
 					var name = document.createElement("h5")
 					var a = document.createElement("a")
@@ -61,11 +63,12 @@ function bindSubmit(){
 					bio.textContent = "Bio: " + response[i].bio
 
 					name.appendChild(a)
-					results.appendChild(name)
-					results.appendChild(sex)
-					results.appendChild(age)
-					results.appendChild(breed)
-					results.appendChild(bio)
+					container.appendChild(name)
+					container.appendChild(sex)
+					container.appendChild(age)
+					container.appendChild(breed)
+					container.appendChild(bio)
+					results.appendChild(container)
 				} 
 			}
 			else{
@@ -77,6 +80,19 @@ function bindSubmit(){
 		event.preventDefault();
 		}
 	})
+}
 
+function listView() {
+	var containers = document.getElementsByClassName("dogContainer");
+	for (var i=0; i < containers.length; i++) {
+		containers[i].style.width = "100%"; 
+	}
+}
 
+function tileView() {
+	var containers = document.getElementsByClassName("dogContainer");
+	console.log(containers.length);
+	for (var i=0; i < containers.length; i++) {
+		containers[i].style.width = "50%"; 
+	}
 }
