@@ -29,7 +29,7 @@ function bindSubmit(){
 		var query = baseurl + zipcode + '/'
 		
 		if (zipcode != "") {
-		req.open('POST', query);
+		req.open('GET', query);
 		req.setRequestHeader('X-CSRFToken', csrftoken);
 		req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
