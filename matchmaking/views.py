@@ -10,3 +10,10 @@ def index(request):
     return render(request, 'index.html', {
         'message': message,
     })
+
+def search(request):
+    message = 'Add New Dog'
+
+    return render(request, 'add-dog.html',{
+        'message': message,
+    })
