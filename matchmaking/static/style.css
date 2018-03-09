@@ -26,19 +26,42 @@ input[type=reset]:hover {
 
 #sidebar {
 	display: table-cell;
-	width: 30%;
+	width: 25%;
 	vertical-align: top;
     padding: 20px;
-    background-color: azure;
+    background-color: azure; 
 }
 
 #content {
 	display: table-cell;
-	width: 70%;
+	width: 75%;
 	vertical-align: top;
     padding: 20px;
 }
 
+.displayButton {
+    margin-left: 20px;
+    background-color: gainsboro;
+    border: none;
+    float: right; 
+}
+
+.displayButton:hover {
+    background-color: #9f9f9f;
+}
+
+.displayImg {
+    max-width: 35px;
+    padding: 3px;
+}
+
 #results {
     padding-left: 40px;
+    margin-top: 20px;
+}
+
+.dogContainer {
+    float: left;
+    width: 100%;
+    padding: 15px;
 }
