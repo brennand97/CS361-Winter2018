@@ -11,9 +11,9 @@ def index(request):
         'message': message,
     })
 
-def search(request):
+def add_dog(request):
     message = 'Add New Dog'
 
-    return render(request, 'add-dog.html',{
+    return render(request, 'add_dog.html',{
         'message': message,
     })
