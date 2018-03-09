@@ -26,9 +26,9 @@
             "friendly": true,
             "kid_friendly": true,
             "likes_water": true,
-            "likes_cars": false,
+            "likes_cars": true,
             "socialized": true,
-            "rescue_animal": false
+            "rescue_animal": true
         }
     },
     
@@ -42,6 +42,19 @@
             "likes_cars": true,
             "socialized": false,
             "rescue_animal": true
+        }
+    },
+
+    {
+        "model": "matchmaking.personalityqualities",
+        "pk": 3,
+        "fields": {
+            "friendly": true,
+            "kid_friendly": false,
+            "likes_water": true,
+            "likes_cars": true,
+            "socialized": true,
+            "rescue_animal": false
         }
     },
     
@@ -70,6 +83,19 @@
             "shedding": true
         }
     },
+
+    {
+        "model": "matchmaking.physicalqualities",
+        "pk": 3,
+        "fields": {
+            "color": "Yellow",
+            "height": 10.0, 
+            "weight": 15.0,
+            "eye_color": "Blue", 
+            "hypoallergenic": true, 
+            "shedding": false
+        }
+    },
     
     {
         "model": "matchmaking.dog",
@@ -85,16 +111,46 @@
             "physical": 1
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 2,
+        "fields": {
+            "name": "Sue",
+            "sex": "f",
+            "age": 1,
+            "breed": "Golden Lab",
+            "bio": "Sue is a puppy",
+            "location": 1,
+            "personality": 3,
+            "physical": 3
+        }
+    },
+    
+    {
+        "model": "matchmaking.dog",
+        "pk": 3,
         "fields": {
             "name": "Fluff",
             "sex": "f",
             "age": 9,
             "breed": "Pug",
             "bio": "I am a pug (\u274d\u1d25\u274d\u028b)",
+            "location": 2,
+            "personality": 2,
+            "physical": 2
+        }
+    },
+
+    {
+        "model": "matchmaking.dog",
+        "pk": 3,
+        "fields": {
+            "name": "Rex",
+            "sex": "m",
+            "age": 3,
+            "breed": "German Shepherd",
+            "bio": "Rex, Rex, Rex",
             "location": 2,
             "personality": 2,
             "physical": 2
