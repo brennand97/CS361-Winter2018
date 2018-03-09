@@ -152,3 +152,11 @@ def search(request, zipcode):
     data = json.dumps(reduce_json(json.loads(data)))
 
     return HttpResponse(data, content_type='application/json')
+
+
+def add_dog(request):
+    message = 'Add New Dog'
+
+    return render(request, 'add-dog.html',{
+        'message': message,
+    })

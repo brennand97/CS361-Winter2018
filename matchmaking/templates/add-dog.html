@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+    <div id="outer-container">
+      <h1>{{ message }}</h1>
+      <h4>Enter the new dog's description below.</h4>
+      <br>
+      <form method="POST" id="add-dog-form">
+
+        {% csrf_token %}
+        <fieldset>
+          <legend>Basic Information</legend>
+          Name <br>
+          <input type="text" name="name"><br>
+          Age <br>
+          <input type="number" name="age"><br>
+          Sex <br>
+          <input type="radio" name="sex" value="f"> Female<br>
+          <input type="radio" name="sex" value="m"> Male<br>
+          Breed <br>
+          <input type="text" name="breed"><br>
+          Biography <br>
+          <input type="text" name="bio"><br>
+        </fieldset>
+
+        <!-- Is this needed, or should the location be grabbed from the
+             shelter user's account info? -->
+        <!--
+        <fieldset>
+          <legend>Location</legend>
+          City <br>
+          <input type="text" name="city"><br>
+          State <br>
+          <input type="text" name="state"><br>
+          Zip <br>
+          <input type="text" name="zipcode" id = "zipcode"><br><br>
+        </fieldset>
+        -->
+        <fieldset>
+          <legend>Physical Characteristics</legend>
+          Height <br>
+          <input type="number" name="height"><br>
+          Weight <br>
+          <input type="number" name="weight"><br>
+          Fur Color <br>
+          <input type="text" name="color"><br>
+          Eye color <br>
+          <select>
+            <option name="eye_color" value="any">No preference</option>
+            <option name="eye_color" value="black">Black</option>
+            <option name="eye_color" value="brown">Brown</option>
+            <option name="eye_color" value="grey">Grey</option>
+            <option name="eye_color" value="green">Green</option>
+            <option name="eye_color" value="blue">Blue</option>
+            <option name="eye_color" value="yellow">Yellow</option>
+          </select><br><br>
+          <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic?<br>
+          <input type="checkbox" name="shedding" value="true"> Sheds?<br><br>
+        </fieldset>
+        <fieldset>
+          <legend>Personality Characteristics</legend>
+          <input type="checkbox" name="friendly" value="true"> Friendly<br>
+          <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br>
+          <input type="checkbox" name="likes_water" value="true"> Likes Water<br>
+          <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br>
+          <input type="checkbox" name="socialized" value="true"> Socialized<br>
+          <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
+        </fieldset>
+        <input class="button1" type="reset" value="RESET">
+        <input class="button1" type="submit" value="SEARCH" id = "submit">
+      </form>
+    </div>
+
+{% endblock %}
