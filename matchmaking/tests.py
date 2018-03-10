@@ -5,7 +5,7 @@ from .models import Location, Dog
 # Create your tests here.
 
 class SearchTestCase(TestCase):
-    
+
     fixtures=['test_data']
 
     def setUp(self):
@@ -15,9 +15,14 @@ class SearchTestCase(TestCase):
     def test_can_lookup_location(self):
 
         location = Location.objects.get(zipcode=97333)
-        
+
         self.assertEqual(location.city, "Corvallis")
         self.assertEqual(location.state, "OR")
+
+    def test_can_detect_bad_location(self):
+
+        with self.assertRaises(Location.DoesNotExist) :
+            location = Location.objects.get(zipcode=10000)
 
     def test_dog_by_location_lookup(self):
 
@@ -26,6 +31,15 @@ class SearchTestCase(TestCase):
 
         dogs = Dog.objects.filter(location=location)
         self.assertIsNotNone(dogs)
+
+    def test_bad_dog_lookup(self):
+
+        location = Location.objects.get(zipcode=77001)
+        self.assertIsNotNone(location)
+
+        dogs = Dog.objects.filter(location=location)
+        # Use the fact that empty lists evaluate as False
+        self.assertFalse(dogs)
 
     def test_different_dog_location_lookup(self):
 

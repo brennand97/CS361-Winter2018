@@ -8,7 +8,7 @@
             "zipcode": "97331"
         }
     },
-    
+
     {
         "model": "matchmaking.location",
         "pk": 2,
@@ -18,7 +18,17 @@
             "zipcode": "97333"
         }
     },
-    
+
+    {
+        "model": "matchmaking.location",
+        "pk": 3,
+        "fields": {
+            "city": "Houston",
+            "state": "TX",
+            "zipcode": "77001"
+        }
+    },
+
     {
         "model": "matchmaking.personalityqualities",
         "pk": 1,
@@ -31,7 +41,7 @@
             "rescue_animal": true
         }
     },
-    
+
     {
         "model": "matchmaking.personalityqualities",
         "pk": 2,
@@ -57,7 +67,7 @@
             "rescue_animal": false
         }
     },
-    
+
     {
         "model": "matchmaking.physicalqualities",
         "pk": 1,
@@ -70,16 +80,16 @@
             "shedding": true
         }
     },
-    
+
     {
         "model": "matchmaking.physicalqualities",
         "pk": 2,
         "fields": {
             "color": "Light Brown",
-            "height": 10.0, 
+            "height": 10.0,
             "weight": 20.0,
-            "eye_color": "Brown", 
-            "hypoallergenic": false, 
+            "eye_color": "Brown",
+            "hypoallergenic": false,
             "shedding": true
         }
     },
@@ -89,14 +99,14 @@
         "pk": 3,
         "fields": {
             "color": "Yellow",
-            "height": 10.0, 
+            "height": 10.0,
             "weight": 15.0,
-            "eye_color": "Blue", 
-            "hypoallergenic": true, 
+            "eye_color": "Blue",
+            "hypoallergenic": true,
             "shedding": false
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 1,
@@ -126,7 +136,7 @@
             "physical": 3
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 3,
@@ -156,7 +166,7 @@
             "physical": 2
         }
     },
-    
+
     {
         "model": "auth.user",
         "pk": 1,
