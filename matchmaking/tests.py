@@ -58,7 +58,7 @@ class SearchTestCase(TestCase):
         self.assertNotEqual(dogs_1, dogs_2)
 
     def test_sex_filter(self):
-        # DB contains Rex as the only dog in 97333, and Rex is male
+        # DB contains Rex as the only male dog in 97333
         location = Location.objects.get(zipcode=97333)
         self.assertIsNotNone(location)
 
@@ -69,7 +69,8 @@ class SearchTestCase(TestCase):
         self.assertNotEqual(list(dogs_1), list(dogs_2))
 
         dogs_3 = dogs_1.filter(sex='m')
-        self.assertEqual(list(dogs_1), list(dogs_3))
+        rex    = dogs_1.filter(name='Rex')
+        self.assertEqual(list(dogs_3), list(rex))
 
     def test_color_filter(self):
         # DB contains Rex as the only dog in 97333, and Rex is male

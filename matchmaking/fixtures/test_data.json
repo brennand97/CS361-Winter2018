@@ -154,7 +154,7 @@
 
     {
         "model": "matchmaking.dog",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "name": "Rex",
             "sex": "m",
