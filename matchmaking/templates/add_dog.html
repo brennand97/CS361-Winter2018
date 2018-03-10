@@ -3,6 +3,7 @@
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<script type="text/javascript" src="{% static 'add-dog-script.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -17,39 +18,24 @@
         <fieldset>
           <legend>Basic Information</legend>
           Name <br>
-          <input type="text" name="name"><br>
+          <input type="text" name="name" id='name'><br>
           Age <br>
-          <input type="number" name="age"><br>
+          <input type="number" name="age" id='age'><br>
           Sex <br>
           <input type="radio" name="sex" value="f"> Female<br>
           <input type="radio" name="sex" value="m"> Male<br>
           Breed <br>
-          <input type="text" name="breed"><br>
-          Biography <br>
-          <input type="text" name="bio"><br>
+          <input type="text" name="breed" id ='name'><br>
+          Bio <br>
+          <input type="text" name="bio" id='name'><br>
         </fieldset>
 
-        <!-- Is this needed, or should the location be grabbed from the
-             shelter user's account info? -->
-        <!--
-        <fieldset>
-          <legend>Location</legend>
-          City <br>
-          <input type="text" name="city"><br>
-          State <br>
-          <input type="text" name="state"><br>
-          Zip <br>
-          <input type="text" name="zipcode" id = "zipcode"><br><br>
-        </fieldset>
-        -->
         <fieldset>
           <legend>Physical Characteristics</legend>
           Height <br>
-          <input type="number" name="height"><br>
+          <input type="number" name="height" id = 'height'><br>
           Weight <br>
-          <input type="number" name="weight"><br>
-          Fur Color <br>
-          <input type="text" name="color"><br>
+          <input type="number" name="weight" id = 'weight'><br>
           Eye color <br>
           <select>
             <option name="eye_color" value="any">No preference</option>
@@ -60,20 +46,20 @@
             <option name="eye_color" value="blue">Blue</option>
             <option name="eye_color" value="yellow">Yellow</option>
           </select><br><br>
-          <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic?<br>
-          <input type="checkbox" name="shedding" value="true"> Sheds?<br><br>
+          <input type="checkbox" name="hypoallergenic" value="true" id= 'hypoallergenic'> Hypoallergenic?<br>
+          <input type="checkbox" name="shedding" value="true" id ='shedding'> Sheds?<br><br>
         </fieldset>
         <fieldset>
           <legend>Personality Characteristics</legend>
-          <input type="checkbox" name="friendly" value="true"> Friendly<br>
-          <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br>
-          <input type="checkbox" name="likes_water" value="true"> Likes Water<br>
-          <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br>
-          <input type="checkbox" name="socialized" value="true"> Socialized<br>
-          <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
+          <input type="checkbox" name="friendly" value="true" id='friendly'> Friendly<br>
+          <input type="checkbox" name="kid_friendly" value="true" id='kid_friendly'> Kid friendly<br>
+          <input type="checkbox" name="likes_water" value="true" id = 'likes_water'> Likes Water<br>
+          <input type="checkbox" name="likes_cars" value="true" id = 'likes_cars'> Likes Cars<br>
+          <input type="checkbox" name="socialized" value="true" id = 'socialized'> Socialized<br>
+          <input type="checkbox" name="rescue_animal" value="true" id = 'rescue_animal'> Rescue animal<br><br>
         </fieldset>
         <input class="button1" type="reset" value="RESET">
-        <input class="button1" type="submit" value="SEARCH" id = "submit">
+        <input class="button1" type="submit" value="ADD" id = "submit">
       </form>
     </div>
 
