@@ -62,10 +62,10 @@
         "model": "matchmaking.physicalqualities",
         "pk": 1,
         "fields": {
-            "color": "Yellow",
+            "color": "yellow",
             "height": 48.0,
             "weight": 70.0,
-            "eye_color": "Brown",
+            "eye_color": "brown",
             "hypoallergenic": false,
             "shedding": true
         }
@@ -75,10 +75,10 @@
         "model": "matchmaking.physicalqualities",
         "pk": 2,
         "fields": {
-            "color": "Light Brown",
+            "color": "light brown",
             "height": 10.0, 
             "weight": 20.0,
-            "eye_color": "Brown", 
+            "eye_color": "brown", 
             "hypoallergenic": false, 
             "shedding": true
         }
@@ -88,10 +88,10 @@
         "model": "matchmaking.physicalqualities",
         "pk": 3,
         "fields": {
-            "color": "Yellow",
+            "color": "yellow",
             "height": 10.0, 
             "weight": 15.0,
-            "eye_color": "Blue", 
+            "eye_color": "blue", 
             "hypoallergenic": true, 
             "shedding": false
         }
@@ -104,7 +104,7 @@
             "name": "Buddy",
             "sex": "m",
             "age": 5,
-            "breed": "Golden Lab",
+            "breed": "golden lab",
             "bio": "Buddy is a dog, this is his bio.",
             "location": 1,
             "personality": 1,
@@ -119,7 +119,7 @@
             "name": "Sue",
             "sex": "f",
             "age": 1,
-            "breed": "Golden Lab",
+            "breed": "golden lab",
             "bio": "Sue is a puppy",
             "location": 1,
             "personality": 3,
@@ -134,7 +134,7 @@
             "name": "Fluff",
             "sex": "f",
             "age": 9,
-            "breed": "Pug",
+            "breed": "pug",
             "bio": "I am a pug (\u274d\u1d25\u274d\u028b)",
             "location": 2,
             "personality": 2,
@@ -149,7 +149,7 @@
             "name": "Rex",
             "sex": "m",
             "age": 3,
-            "breed": "German Shepherd",
+            "breed": "german shepherd",
             "bio": "Rex, Rex, Rex",
             "location": 2,
             "personality": 2,
