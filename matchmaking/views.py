@@ -198,7 +198,7 @@ def search(request, zipcode):
     else:
         dogs = Dog.objects.filter(location__in=locations)
 
-    print(len(dogs))
+    print("Found {} dogs.".format(len(dogs)))
 
     data = serializers.serialize("json", dogs)
     data = json.dumps(reduce_json(json.loads(data)))
