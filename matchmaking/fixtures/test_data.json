@@ -8,7 +8,7 @@
             "zipcode": "97331"
         }
     },
-    
+
     {
         "model": "matchmaking.location",
         "pk": 2,
@@ -18,7 +18,17 @@
             "zipcode": "97333"
         }
     },
-    
+
+    {
+        "model": "matchmaking.location",
+        "pk": 3,
+        "fields": {
+            "city": "Houston",
+            "state": "TX",
+            "zipcode": "77001"
+        }
+    },
+
     {
         "model": "matchmaking.personalityqualities",
         "pk": 1,
@@ -31,7 +41,7 @@
             "rescue_animal": true
         }
     },
-    
+
     {
         "model": "matchmaking.personalityqualities",
         "pk": 2,
@@ -57,7 +67,7 @@
             "rescue_animal": false
         }
     },
-    
+
     {
         "model": "matchmaking.physicalqualities",
         "pk": 1,
@@ -70,7 +80,7 @@
             "shedding": true
         }
     },
-    
+
     {
         "model": "matchmaking.physicalqualities",
         "pk": 2,
@@ -79,7 +89,7 @@
             "height": 10.0, 
             "weight": 20.0,
             "eye_color": "brown", 
-            "hypoallergenic": false, 
+            "hypoallergenic": false,
             "shedding": true
         }
     },
@@ -92,11 +102,11 @@
             "height": 10.0, 
             "weight": 15.0,
             "eye_color": "blue", 
-            "hypoallergenic": true, 
+            "hypoallergenic": true,
             "shedding": false
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 1,
@@ -126,7 +136,7 @@
             "physical": 3
         }
     },
-    
+
     {
         "model": "matchmaking.dog",
         "pk": 3,
@@ -144,7 +154,7 @@
 
     {
         "model": "matchmaking.dog",
-        "pk": 3,
+        "pk": 4,
         "fields": {
             "name": "Rex",
             "sex": "m",
@@ -156,7 +166,7 @@
             "physical": 2
         }
     },
-    
+
     {
         "model": "auth.user",
         "pk": 1,
