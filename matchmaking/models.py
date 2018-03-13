@@ -21,10 +21,10 @@ class Choice(models.Model):
 class Location(Model):
 
     states = [
-            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA", 
-            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", 
-            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", 
-            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", 
+            "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+            "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+            "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
             "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
             ]
 
@@ -68,6 +68,7 @@ class UserProfile(Model):
     user         = ForeignKey(User, on_delete=CASCADE, null=False)
     location     = ForeignKey(Location, on_delete=CASCADE, null=True)
     contact_info = ForeignKey(ContactInfo, on_delete=CASCADE, null=False)
+    is_shelter   = BooleanField(null=False, default=False)
 
     def __str__(self):
         return user_to_str(self.user)
@@ -142,6 +143,7 @@ class Dog(Model):
     location    = ForeignKey(Location, on_delete=CASCADE, null=False)
     personality = ForeignKey(PersonalityQualities, on_delete=CASCADE, null=False)
     physical    = ForeignKey(PhysicalQualities, on_delete=CASCADE, null=False)
+    owner       = ForeignKey(UserProfile, on_delete=CASCADE, null=False)
 
     def __str__(self):
         return 'Dog: {}, {}, {}, {}'.format(self.name, self.sex, self.age, self.breed)
