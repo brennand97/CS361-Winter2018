@@ -24,6 +24,8 @@ function bindSubmit(){
 		var req = new XMLHttpRequest();
 		var baseurl = 'http://localhost:8000/addDog/';
 		var payload = generatePayload();
+		payload.user = document.getElementById("user").value
+
 		console.log(payload)
 
 		//don't do POST request unless there's at least a name and zipcode.  Pretty worthless otherwise.
@@ -31,8 +33,8 @@ function bindSubmit(){
 			window.alert("Enter at least a name and zipcode to add dog.")
 		}
 		else{
+			
 			req.open('POST', baseurl);
-
 			//get the token
 			var csrftoken = getCookie('csrftoken');
 			req.setRequestHeader('X-CSRFToken', csrftoken);
@@ -48,7 +50,7 @@ function bindSubmit(){
 					console.log("Error in network request: " + req.statusText);
 				}
 			})
-			req.send(payload)
+			req.send(JSON.stringify(payload))
 		}
 	})
 }
@@ -56,6 +58,7 @@ function bindSubmit(){
 //Creates an empty payload object.
 function generateEmptyPayload(){
 	var payload = {
+		"user": null,
   		"dog": {
   			"name": null,
     		"sex": null,
