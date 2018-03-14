@@ -145,8 +145,8 @@ class Dog(Model):
     physical    = ForeignKey(PhysicalQualities, on_delete=CASCADE, null=False)
     
     has_shelter = BooleanField(default=False, null=False)
-    owner       = ForeignKey(UserProfile, on_delete=CASCADE, null=True)
-    shelter     = ForeignKey(Shelter, on_delete=CASCADE, null=True)
+    owner       = ForeignKey(UserProfile, on_delete=CASCADE, null=True, blank=True)
+    shelter     = ForeignKey(Shelter, on_delete=CASCADE, null=True, blank=True)
 
     def __str__(self):
         return 'Dog: {}, {}, {}, {}'.format(self.name, self.sex, self.age, self.breed)

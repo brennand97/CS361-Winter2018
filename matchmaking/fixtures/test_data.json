@@ -168,7 +168,9 @@
             "location": 1,
             "personality": 1,
             "physical": 1,
-            "owner": 1
+            "owner": null,
+            "has_shelter": true,
+            "shelter": 1
         }
     },
 
@@ -217,6 +219,17 @@
             "personality": 2,
             "physical": 2,
             "owner": 1
+        }
+    },
+
+    {
+        "model": "matchmaking.shelter",
+        "pk": 1,
+        "fields": {
+            "name": "shelter1", 
+            "location": 1, 
+            "contact_info": 1, 
+            "verified": true
         }
     }
 ]
