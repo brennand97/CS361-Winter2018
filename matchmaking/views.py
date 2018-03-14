@@ -3,11 +3,33 @@ from django.shortcuts import render
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Dog, Location, PersonalityQualities, PhysicalQualities
+from .models import Dog, Location, PersonalityQualities, PhysicalQualities, UserProfile
 
 import json
 
 # Helper Functions
+
+"""
+This is a helper function for add_dog_to_db.  Javascript bool values were sent as strings.  Python
+needs them as bools.  This converts them.
+"""
+def str2bool(v):
+  try:
+      return v.lower() in ("true", "True")
+  except Exception as e:
+      return False
+  
+
+def fix_bools(data):
+    data["personality"]["friendly"] = str2bool(data["personality"]["friendly"])
+    data["personality"]["kid_friendly"] = str2bool(data["personality"]["kid_friendly"])
+    data["personality"]["likes_water"] = str2bool(data["personality"]["likes_water"])
+    data["personality"]["likes_cars"] = str2bool(data["personality"]["likes_cars"])
+    data["personality"]["socialized"] = str2bool(data["personality"]["socialized"])
+    data["personality"]["rescue_animal"] = str2bool(data["personality"]["rescue_animal"])
+    data["physical"]["hypoallergenic"] = str2bool(data["physical"]["hypoallergenic"])
+    data["physical"]["shedding"] = str2bool(data["physical"]["shedding"])
+    return data
 """
 This function reduces the nasty json that the Django serailizer produces
 to objects that only contain the fields.
@@ -156,3 +178,54 @@ def add_dog(request):
     return render(request, 'add_dog.html',{
         'message': message,
     })
+
+@csrf_exempt
+def add_dog_to_db(request):
+    data = json.loads(request.body.decode('utf-8'))
+    data = fix_bools(data)
+
+    #location
+    l, created_l = Location.objects.get_or_create(
+        city=data["dog"]["city"],
+        state=data["dog"]["state"],
+        zipcode=data["dog"]["zipcode"])
+ 
+    #personality
+    pers, created_pers = PersonalityQualities.objects.get_or_create(
+        friendly=data["personality"]["friendly"],
+        kid_friendly=data["personality"]["kid_friendly"],
+        likes_water =data["personality"]["likes_water"],
+        likes_cars =data["personality"]["likes_cars"],
+        socialized  =data["personality"]["socialized"],
+        rescue_animal = data["personality"]["rescue_animal"])
+
+    #physical
+    phys, created_phys = PhysicalQualities.objects.get_or_create(
+        color=data["physical"]["color"],
+        height=data["physical"]["height"],
+        weight=data["physical"]["weight"],
+        eye_color=data["physical"]["eye_color"],
+        hypoallergenic=data["physical"]["hypoallergenic"],
+        shedding=data["physical"]["shedding"]) 
+
+    #user.  I can't seem to filter this properly based on a given username.
+    user = UserProfile.objects.filter(User__first_name__contains = data["user"]) 
+
+    #finally, Dog
+    d = Dog(
+        name = data["dog"]["name"],
+        sex=data["dog"]["sex"],
+        age=data["dog"]["age"],
+        breed=data["dog"]["breed"],
+        bio = data["dog"]["bio"],
+        location = l,
+        personality = pers, 
+        physical = phys,
+        owner = user)
+    d.save()
+
+    success = "yes"
+    status = {'success': success}
+
+    return HttpResponse(status, content_type='application/json')
+
