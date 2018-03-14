@@ -1,9 +1,9 @@
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Dog, Location, PersonalityQualities, PhysicalQualities
+from .models import Dog, Location, PersonalityQualities, PhysicalQualities, Shelter
 
 import json
 
@@ -157,9 +157,10 @@ def add_dog(request):
         'message': message,
     })
 
-def view_listings(request):
-    message = "View listings"
+def view_listings(request, shelter):
+    
+    shelter_obj = get_object_or_404(Shelter, name=shelter)
 
     return render(request, 'view_listings.html', {
-        'message': message,
+        
     })

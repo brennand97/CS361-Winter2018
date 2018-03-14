@@ -31,7 +31,7 @@ function bindSubmit(){
 		if (zipcode != "") {
 		req.open('GET', query);
 		req.setRequestHeader('X-CSRFToken', csrftoken);
-		req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		req.setRequestHeader("Content-type","application/json");
 
 		req.addEventListener('load',function(){
 			if(req.status >= 200 && req.status < 400){
