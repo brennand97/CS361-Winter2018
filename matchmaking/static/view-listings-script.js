@@ -32,7 +32,7 @@ function bindSubmit(){
 
 
 		if (shelter == "") {
-			window.alert("Please enter the shelter account name.")
+			window.alert("Please enter the shelter account name.");
 		}
 		
 		if (shelter != "") {
@@ -44,42 +44,42 @@ function bindSubmit(){
 			if(req.status >= 200 && req.status < 400){
 				//DOM Manipulation here.
 				response = JSON.parse(req.responseText);
-				results = document.getElementById('listingResults')
+				results = document.getElementById('listingResults');
 
 				//delete any previous results
 				while (results.firstChild){
-					results.removeChild(results.firstChild)
+					results.removeChild(results.firstChild);
 				}
 
-				for (i=0; i < response.length; i++){
-					var container = document.createElement('div')
-					container.className = "dogContainer"
-					var dog = document.createElement("div")
-					var name = document.createElement("h5")
-					var a = document.createElement("a")
-					var sex = document.createElement('p')
-					var age = document.createElement('p')
-					var breed = document.createElement('p')
-					var bio = document.createElement('p')
-
+				for (i=0; i < response.length; i++) {
+					var container = document.createElement('div');
+					container.className = "dogContainer";
+					var dog = document.createElement("div");
+					var name = document.createElement("h5");
+					var a = document.createElement("a");
+					var sex = document.createElement('p');
+					var age = document.createElement('p');
+					var breed = document.createElement('p');
+					var bio = document.createElement('p');
+					
 					a.textContent = response[i].name;
-					a.href = '#'
-					sex.textContent = "Sex: " + response[i].sex
-					age.textContent = "Age: " + response[i].age
-					breed.textContent = "Breed: " + response[i].breed
-					bio.textContent = "Bio: " + response[i].bio
+					a.href = '#';
+					sex.textContent = "Sex: " + response[i].sex;
+					age.textContent = "Age: " + response[i].age;
+					breed.textContent = "Breed: " + response[i].breed;
+					bio.textContent = "Bio: " + response[i].bio;
 
-					name.appendChild(a)
-					container.appendChild(name)
-					container.appendChild(sex)
-					container.appendChild(age)
-					container.appendChild(breed)
-					container.appendChild(bio)
-					results.appendChild(container)
+					name.appendChild(a);
+					container.appendChild(name);
+					container.appendChild(sex);
+					container.appendChild(age);
+					container.appendChild(breed);
+					container.appendChild(bio);
+					results.appendChild(container);
 				} 
 			}
 			else{
-				console.log("Error in network request: " + req.statusText)
+				console.log("Error in network request: " + req.statusText);
 			}
 		})
 		

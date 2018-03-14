@@ -29,7 +29,9 @@ def reduce_json(data):
     else:
         if isinstance(data, dict):
             if "model" in data:
+                pk = data["pk"]
                 data = data["fields"]
+                data["id"] = pk
             for f in data:
                 data[f] = reduce_json(data[f])
         return data
