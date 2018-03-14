@@ -157,10 +157,13 @@ def add_dog(request):
         'message': message,
     })
 
-def view_listings(request, shelter):
-    
-    shelter_obj = get_object_or_404(Shelter, name=shelter)
+def view_listings(request):
+    return render(request, 'view_listings.html', {})
 
-    return render(request, 'view_listings.html', {
-        
-    })
+def shelter_dogs(request, shelter):
+    s = get_object_or_404(Shelter, name=shelter)
+
+    dogs = Dog.objects.filter(has_shelter=True, shelter=s)
+    dogs_json = queryset_to_json(dogs)
+
+    return HttpResponse(dogs_json, content_type='application/json')

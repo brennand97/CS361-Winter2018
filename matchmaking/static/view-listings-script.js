@@ -25,7 +25,7 @@ function bindSubmit(){
 	document.getElementById('submitListing').addEventListener('click',function(event){
 		event.preventDefault();
 		var req = new XMLHttpRequest();
-		var baseurl = 'http://localhost:8000/view_listings/';
+		var baseurl = 'http://localhost:8000/shelter_dogs/';
 		var shelter = document.getElementById('shelterName').value;
 		console.log("shelter: ", shelter);
 		var query = baseurl + shelter + '/';
