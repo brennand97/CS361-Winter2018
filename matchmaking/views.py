@@ -156,3 +156,10 @@ def add_dog(request):
     return render(request, 'add_dog.html',{
         'message': message,
     })
+
+def view_listings(request):
+    message = "View listings"
+
+    return render(request, 'view_listings.html', {
+        'message': message,
+    })
