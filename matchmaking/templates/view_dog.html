@@ -7,11 +7,21 @@
 {% endblock %}
 
 {% block content %}
-<div class="dogContainer">
-    <h5>{{ dog.name }}</h5>
-    <p>Sex: {{ dog.sex }}</p>
-    <p>Age: {{ dog.age }}</p>
-    <p>Breed: {{ dog.breed }}</p>
-    <p>Bio: {{ dog.bio }}</p>
+<div style="background-color: #aac1ed; border-radius: 4px;" class="col-md-8 float-left dogContainer">
+    <div style="padding:5px;" class="row">
+        <div class="col-md-8">
+            <h5>{{ dog.name }}</h5>
+            <p>Sex: {{ dog.sex }}</p>
+            <p>Age: {{ dog.age }}</p>
+            <p>Breed: {{ dog.breed }}</p>
+            <p>Bio: {{ dog.bio }}</p>
+        </div>
+        <div style="background-color: white;" class="col-md-4">
+            <br>
+            <p>Imagine a cute dog picture here and say "Awe!"</p>
+        </div>
+    </div>
+    <br>
+    <button class="btn btn-primary float-right">Adopt This Dog</button>
 </div>
 {% endblock %}
