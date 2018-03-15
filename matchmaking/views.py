@@ -179,5 +179,9 @@ def del_dog(request):
 	Dog.objects.get(name=dog_name).delete()
 	return HttpResponse("Ok")
 
-	
-	
+def view_dog(request, dog_id):
+    dog = get_object_or_404(Dog, pk=dog_id)
+    dog_json = serializers.serialize("json", [dog])
+    dog_json = json.loads(dog_json)[0]
+    dog_json = json.dumps(reduce_json(dog_json))
+    return HttpResponse(dog_json, content_type='application/json')

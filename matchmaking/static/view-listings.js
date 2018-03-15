@@ -81,10 +81,13 @@ function bindSubmit(){
 					deleteBtn.className = response[i].name;
 
 					// View button opens dog page in new tab
-					viewBtn.addEventListener("click", function() {
-						var url = baseurl + this.className + '/';
-						window.open(url, '_blank');
-					})
+					(function(viewBtn, dog) {
+						viewBtn.addEventListener("click", function() {
+							var baseurl = 'http://localhost:8000/view_dog/';
+							var url = baseurl + dog.id + '/';
+							window.open(url, '_blank');
+						});
+					})(viewBtn, response[i]);
 					editBtn.addEventListener("click", function() {
 						console.log("editBtn pressed.")
 					})
