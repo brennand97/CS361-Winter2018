@@ -34,23 +34,23 @@
                 <input type="radio" name="sex" value="f"> Female<br>
                 <input type="radio" name="sex" value="m"> Male<br><br>
                 Color <br>
-                <input type="text" name="color"><br><br>
+                <input type="text" id="color"><br><br>
                 Height range <br>
-                <select>
+                <select id="height-opt">
                     <option name="height" value="any">No preference</option>
                     <option name="height" value="short">Less than 2 ft.</option>
                     <option name="height" value="average">2 - 3 ft.</option>
                     <option name="height" value="tall">More than 3 ft.</option>
                 </select><br><br>
                 Weight range <br>
-                <select>
+                <select id="weight-opt">
                     <option name="weight" value="any">No preference</option>
                     <option name="weight" value="small">Less than 25 lbs</option>
                     <option name="weight" value="medium">25 - 50 lbs</option>
-                    <option name="weight" value="large">50 - 100 lbs</option>
+                    <option name="weight" value="large">Greater than 50 lbs</option>
                 </select><br><br>
                 Eye color <br>
-                <select>
+                <select id="eye-color-opt">
                     <option name="eye_color" value="any">No preference</option>
                     <option name="eye_color" value="black">Black</option>
                     <option name="eye_color" value="brown">Brown</option>
@@ -59,17 +59,73 @@
                     <option name="eye_color" value="blue">Blue</option>
                     <option name="eye_color" value="yellow">Yellow</option>
                 </select><br><br>
-                <input type="checkbox" name="hypoallergenic" value="true"> Hypoallergenic<br>
-                <input type="checkbox" name="shedding" value="true"> Shedding<br><br>
+                <div class="true-false-opt">
+                    <select id="hypoallergenic-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Hypoallergenic
+                </div>
+                <div class="true-false-opt">
+                    <select id="shedding-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Shedding
+                </div><br>
             </fieldset>
             <fieldset>
                 <legend>Personality Traits</legend>
-                <input type="checkbox" name="friendly" value="true"> Friendly<br>
-                <input type="checkbox" name="kid_friendly" value="true"> Kid friendly<br>
-                <input type="checkbox" name="likes_water" value="true"> Likes Water<br>
-                <input type="checkbox" name="likes_cars" value="true"> Likes Cars<br>
-                <input type="checkbox" name="socialized" value="true"> Socialized<br>
-                <input type="checkbox" name="rescue_animal" value="true"> Rescue animal<br><br>
+                <div class="true-false-opt">
+                    <select id="friendly-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Friendly
+                </div>
+                <div class="true-false-opt">
+                    <select id="kid-friendly-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Kid Friendly
+                </div>
+                <div class="true-false-opt">
+                    <select id="likes-water-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Likes Water
+                </div>
+                <div class="true-false-opt">
+                    <select id="likes-cars-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Likes Cars
+                </div>
+                <div class="true-false-opt">
+                    <select id="socialized-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Socialized
+                </div>
+                <div class="true-false-opt">
+                    <select id="resuce-animal-opt">
+                        <option value="1" selected="selected">----</option>
+                        <option value="2">True</option>
+                        <option value="3">False</option>
+                    </select>
+                    Rescue Animal
+                </div><br>
             </fieldset>
             <input class="button1" type="reset" value="RESET">
             <input class="button1" type="submit" value="SEARCH" id = "submit">
