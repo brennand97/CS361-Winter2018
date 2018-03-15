@@ -169,3 +169,12 @@ def shelter_dogs(request, shelter):
     dogs_json = queryset_to_json(dogs)
 
     return HttpResponse(dogs_json, content_type='application/json')
+	
+def del_dog(request):
+	req = json.loads(request.body)
+	if not check_for_fields(req,["name"]):
+		return HttpResponseBadRequest("Parameter 'Name' missing: Cannot delete dog")
+		
+	dog_name = req["name"]
+	Dog.objects.get(name=dog_name).delete()
+	
