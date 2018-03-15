@@ -177,4 +177,7 @@ def del_dog(request):
 		
 	dog_name = req["name"]
 	Dog.objects.get(name=dog_name).delete()
+	return HttpResponse("Ok")
+
+	
 	
