@@ -3,18 +3,18 @@
 {% block css %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
-<script type="text/javascript" src="{% static 'add-dog-script.js' %}"></script>
+<script type="text/javascript" src="{% static 'add-dog.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 
     <div id="outer-container">
       <h1>{{ message }}</h1>
-      <h4>Enter the new dog's description below.</h4>
-      <br>
+      <h4>Enter the new dog's description below.</h4><br>
       <form method="POST" id="add-dog-form">
 
         {% csrf_token %}
+        
         <fieldset>
           <legend>Basic Information</legend>
           Username <br>
@@ -32,9 +32,7 @@
           <input type="text" name="bio" id='bio'><br>
           Zipcode <br>
           <input type="number" name="zipcode" id='zipcode'><br>
-
         </fieldset>
-
         <fieldset>
           <legend>Physical Characteristics</legend>
           Color <br>

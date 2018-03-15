@@ -81,18 +81,3 @@ function bindSubmit(){
 		}
 	})
 }
-
-function listView() {
-	var containers = document.getElementsByClassName("dogContainer");
-	for (var i=0; i < containers.length; i++) {
-		containers[i].style.width = "100%"; 
-	}
-}
-
-function tileView() {
-	var containers = document.getElementsByClassName("dogContainer");
-	console.log(containers.length);
-	for (var i=0; i < containers.length; i++) {
-		containers[i].style.width = "50%"; 
-	}
-}

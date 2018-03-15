@@ -17,10 +17,10 @@ function getCookie(name) {
     return cookieValue;
 }
 
-//get the token
+// Get the token
 var csrftoken = getCookie('csrftoken');
 
-//binds an event to the submit button on the view_listings page.  
+// Binds an event to the submit button on the view_listings page.  
 function bindSubmit(){
 	document.getElementById('submitListing').addEventListener('click',function(event){
 		event.preventDefault();
@@ -115,7 +115,6 @@ function bindSubmit(){
 	})
 }
 
-
 // Delete POST request 
 function deleteFcn(dogName) {
 	event.preventDefault();
@@ -142,18 +141,4 @@ function deleteFcn(dogName) {
 			console.log("Error in network request: " + req.statusText);
 		}
 	})
-}
-
-function listView() {
-	var containers = document.getElementsByClassName("dogContainer");
-	for (var i=0; i < containers.length; i++) {
-		containers[i].style.width = "100%"; 
-	}
-}
-
-function tileView() {
-	var containers = document.getElementsByClassName("dogContainer");
-	for (var i=0; i < containers.length; i++) {
-		containers[i].style.width = "50%"; 
-	}
 }

@@ -156,6 +156,4 @@ function fixPayload(payload){
 			}
 	}
 	return payload
-}
-
-
+}f
