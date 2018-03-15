@@ -70,13 +70,16 @@ load that looks like (set fields to null if you don't want to filter on them):
 {
   "dog": {
     "sex": "m",
-    "age": 4,
+    "min_age": 2,
+    "max_age": 4,
     "breed": "Pug"
   },
   "physical": {
     "color": "Yellow",
-    "height": 20.0,
-    "weight": 30.0,
+    "min_height": 10.0,
+    "max_height": 20.0,
+    "min_weight": 15.0,
+    "max_weight": 30.0,
     "eye_color": "Blue",
     "hypoallergenic": false,
     "shedding": true
@@ -99,23 +102,29 @@ def search(request, zipcode):
 
     if request.method == 'POST':
 
-        json_data = json.loads(request.body)
+        try:
+            json_data = json.loads(request.body)
+        except Exception:
+            return HttpResponseBadRequest("Need to include a json payload with filter data.")
 
         if not check_for_fields(json_data, ["physical", "personality", "dog"]):
             return HttpResponseBadRequest("Missing either the physical or personality fields.")
 
+
         physical_data = json_data["physical"]
         personality_data = json_data["personality"]
         dog_data = json_data["dog"]
+
 
         if physical_data is None or \
            personality_data is None or \
            dog_data is None:
             return HttpResponseBadRequest("One or all of the physical, personality, or dog fields is null.")
 
+
         # Check to make sure physical_data has proper fields
         if not check_for_fields(physical_data, [
-                "color", "height", "weight", "eye_color",
+                "color", "min_height", "max_height", "min_weight", "max_weight", "eye_color",
                 "hypoallergenic", "shedding"
             ]):
             return HttpResponseBadRequest("Not all fields are in physical data object.")
@@ -129,13 +138,52 @@ def search(request, zipcode):
 
         # Check to make sure dog_data has proper fields
         if not check_for_fields(dog_data, [
-                "sex", "age", "breed"
+                "sex", "min_age", "max_age", "breed"
             ]):
             return HttpResponseBadRequest("Not all fields are in dog data object.")
 
+
+        # Remove fields with None values
         physical_data = remove_empty(physical_data)
         personality_data = remove_empty(personality_data)
         dog_data = remove_empty(dog_data)
+
+
+        # Handle age
+        if "max_age" in dog_data:
+            max_a = dog_data["max_age"]
+            del dog_data["max_age"]
+            dog_data["age__lte"] = max_a
+
+        if "min_age" in dog_data:
+            min_a = dog_data["min_age"]
+            del dog_data["min_age"]
+            dog_data["age__gte"] = min_a
+
+
+        # Handle weight
+        if "max_weight" in physical_data:
+            max_w = physical_data["max_weight"]
+            del physical_data["max_weight"]
+            physical_data["weight__lte"] = max_w
+
+        if "min_weight" in physical_data:
+            min_w = physical_data["min_weight"]
+            del physical_data["min_weight"]
+            physical_data["weight__gte"] = min_w
+
+
+        # Handle height
+        if "max_height" in physical_data:
+            max_h = physical_data["max_height"]
+            del physical_data["max_height"]
+            physical_data["height__lte"] = max_h
+
+        if "min_height" in physical_data:
+            min_h = physical_data["min_height"]
+            del physical_data["min_height"]
+            physical_data["height__gte"] = min_h
+
 
         phy_qs = PhysicalQualities.objects.filter(**physical_data)
         per_qs = PersonalityQualities.objects.filter(**personality_data)
@@ -144,9 +192,13 @@ def search(request, zipcode):
                                   physical__in=phy_qs,
                                   personality__in=per_qs,
                                   **dog_data)
-    
+
+        print(json_data)
+
     else:
         dogs = Dog.objects.filter(location__in=locations)
+
+    print("Found {} dogs.".format(len(dogs)))
 
     data = serializers.serialize("json", dogs)
     data = json.dumps(reduce_json(json.loads(data)))
