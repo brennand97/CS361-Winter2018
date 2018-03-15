@@ -196,7 +196,8 @@ def shelter_dogs(request, shelter):
 
 @csrf_exempt
 def add_dog_to_db(request):
-    data = json.loads(request.body.decode('utf-8'))
+    print(request.body)
+    data = json.loads(request.body)
     data = fix_bools(data)
 
     #location
@@ -224,8 +225,8 @@ def add_dog_to_db(request):
         shedding=data["physical"]["shedding"]) 
 
     #owner
-    form_user = User.objects.filter(username=data["user"])
-    user_prof = UserProfile.objects.filter(user = form_user[0])
+    form_user = get_object_or_404(User, username=data["user"])
+    user_prof = UserProfile.objects.filter(user = form_user)
 
     #finally, Dog
     d = Dog(
