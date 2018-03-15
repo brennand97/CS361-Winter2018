@@ -183,7 +183,6 @@ def add_dog(request):
         'message': message,
     })
 
-<<<<<<< HEAD
 def view_listings(request):
     return render(request, 'view_listings.html', {})
 
@@ -194,7 +193,7 @@ def shelter_dogs(request, shelter):
     dogs_json = queryset_to_json(dogs)
 
     return HttpResponse(dogs_json, content_type='application/json')
-=======
+
 @csrf_exempt
 def add_dog_to_db(request):
     data = json.loads(request.body.decode('utf-8'))
@@ -246,4 +245,3 @@ def add_dog_to_db(request):
 
     return HttpResponse(status, content_type='application/json')
 
->>>>>>> origin/add-dog
