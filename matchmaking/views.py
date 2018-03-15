@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
+from django.contrib.auth.models import User
 from .models import Dog, Location, PersonalityQualities, PhysicalQualities, UserProfile
+
 
 import json
 
@@ -208,8 +210,9 @@ def add_dog_to_db(request):
         hypoallergenic=data["physical"]["hypoallergenic"],
         shedding=data["physical"]["shedding"]) 
 
-    #user.  I can't seem to filter this properly based on a given username.
-    user = UserProfile.objects.filter(User__first_name__contains = data["user"]) 
+    #owner
+    form_user = User.objects.filter(username=data["user"])
+    user_prof = UserProfile.objects.filter(user = form_user[0])
 
     #finally, Dog
     d = Dog(
@@ -221,7 +224,7 @@ def add_dog_to_db(request):
         location = l,
         personality = pers, 
         physical = phys,
-        owner = user)
+        owner = user_prof[0])
     d.save()
 
     success = "yes"
