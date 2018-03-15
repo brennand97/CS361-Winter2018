@@ -8,4 +8,5 @@ urlpatterns = [
     path(r'search/<int:zipcode>/', views.search, name='search'),
     path(r'view_listings/', views.view_listings, name='view_listings'),
     path(r'shelter_dogs/<str:shelter>/', views.shelter_dogs, name='shelter_dogs'),
+    path(r'add_dog_to_db/',views.add_dog_to_db, name='add_dog_to_db'),
 ]

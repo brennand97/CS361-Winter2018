@@ -22,7 +22,7 @@ function bindSubmit(){
 	document.getElementById('submit').addEventListener('click',function(event){
 		event.preventDefault();
 		var req = new XMLHttpRequest();
-		var baseurl = 'http://localhost:8000/addDog/';
+		var baseurl = 'http://localhost:8000/add_dog_to_db/';
 		var payload = generatePayload();
 		payload.user = document.getElementById("user").value
 
@@ -38,7 +38,7 @@ function bindSubmit(){
 			//get the token
 			var csrftoken = getCookie('csrftoken');
 			req.setRequestHeader('X-CSRFToken', csrftoken);
-			req.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+			req.setRequestHeader("Content-type","application/json");
 
 			req.addEventListener('load',function(){
 				if(req.status >= 200 && req.status < 400){
@@ -64,7 +64,10 @@ function generateEmptyPayload(){
     		"sex": null,
     		"age": null,
     		"breed": null,
-    		"zipcode": null
+    		"city": null,
+    		"state": null,
+    		"zipcode": null,
+    		"bio": null
   		},
   		"physical": {
     		"color": null,
@@ -113,7 +116,7 @@ function generatePayload(){
 			continue;
 		}
 
-		if (prop == 'name' || prop == 'sex' || prop == 'breed' || prop == 'age' || prop == 'zipcode'){
+		if (prop == 'city' || prop == 'state' || prop == 'name' || prop == 'sex' || prop == 'breed' || prop == 'age' || prop == 'zipcode' || prop == 'bio'){
 			payload.dog[prop] = formData[prop]
 		}
 
