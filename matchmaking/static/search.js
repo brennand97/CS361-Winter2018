@@ -25,7 +25,7 @@ function bindSubmit(){
 	document.getElementById('submit').addEventListener('click',function(event){
 		var req = new XMLHttpRequest();
 		var zipcode = document.getElementById('zipcode').value;
-		var baseurl = 'http://localhost:8000/search/';
+		var baseurl = '/search/';
 		var query = baseurl + zipcode + '/'
 		
 		if (zipcode != "") {
@@ -56,7 +56,7 @@ function bindSubmit(){
 					var bio = document.createElement('p')
 
 					a.textContent = response[i].name;
-					a.href = '#'
+					a.href = '/view_dog/' + response[i].id;
 					sex.textContent = "Sex: " + response[i].sex
 					age.textContent = "Age: " + response[i].age
 					breed.textContent = "Breed: " + response[i].breed

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+<div class="dogContainer">
+    <h5>{{ dog.name }}</h5>
+    <p>Sex: {{ dog.sex }}</p>
+    <p>Age: {{ dog.age }}</p>
+    <p>Breed: {{ dog.breed }}</p>
+    <p>Bio: {{ dog.bio }}</p>
+</div>
+{% endblock %}
