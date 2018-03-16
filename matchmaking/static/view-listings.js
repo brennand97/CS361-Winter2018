@@ -88,9 +88,18 @@ function bindSubmit(){
 							window.open(url, '_blank');
 						});
 					})(viewBtn, response[i]);
-					editBtn.addEventListener("click", function() {
-						console.log("editBtn pressed.")
-					})
+					
+					// Edit button opens edit url in new tab
+					(function(editBtn, dog) {	
+						editBtn.addEventListener("click", function() {
+							var baseurl = 'http://localhost:8000/view_dog/';
+							var url = baseurl + dog.id + '/edit/';
+							console.log("hmm in editBtn");
+							window.open(url, '_blank');
+						});
+					})(editBtn, response[i]);
+					
+					// Delete button removes dog 
 					deleteBtn.addEventListener("click", function() {
 						deleteFcn(this.className)
 					})

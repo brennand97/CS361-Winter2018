@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+{% endblock %}
+
+{% block content %}
+<h3>Welcome to the Shelter Dashboard!</h3><br>
+<form method="POST" id="editDog">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit Changes">
+</form>
+{% endblock %}

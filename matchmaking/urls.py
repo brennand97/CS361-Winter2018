@@ -10,4 +10,5 @@ urlpatterns = [
     path(r'shelter_dogs/<str:shelter>/', views.shelter_dogs, name='shelter_dogs'),
     path(r'del_dog/', views.del_dog, name='del_dog'),
     path(r'view_dog/<int:dog_id>/', views.view_dog, name='view_dog'),
+    path(r'view_dog/<int:dog_id>/edit/', views.edit_dog, name='edit_dog'),
 ]

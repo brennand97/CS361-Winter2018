@@ -1,9 +1,11 @@
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render, get_object_or_404
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
 
 from .models import Dog, Location, PersonalityQualities, PhysicalQualities, Shelter
+from .forms import DogForm
 
 import json
 
@@ -169,12 +171,12 @@ def shelter_dogs(request, shelter):
     dogs_json = queryset_to_json(dogs)
 
     return HttpResponse(dogs_json, content_type='application/json')
-	
+
 def del_dog(request):
 	req = json.loads(request.body)
 	if not check_for_fields(req,["name"]):
 		return HttpResponseBadRequest("Parameter 'Name' missing: Cannot delete dog")
-		
+
 	dog_name = req["name"]
 	Dog.objects.get(name=dog_name).delete()
 	return HttpResponse("Ok")
@@ -185,3 +187,16 @@ def view_dog(request, dog_id):
     # dog_json = json.loads(dog_json)[0]
     # dog_json = json.dumps(reduce_json(dog_json))
     return render(request, 'view_dog.html', {'dog': dog})
+
+def edit_dog(request, dog_id):
+    instance = get_object_or_404(Dog, pk=dog_id)
+    form = DogForm(request.POST or None, instance=instance)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect('/view_listings/')
+
+    context = {
+        "form": form,
+    }
+    return render(request, "edit_dog.html", context)
