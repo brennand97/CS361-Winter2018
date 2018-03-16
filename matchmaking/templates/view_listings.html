@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<script type="text/javascript" src="{% static 'view-listings-script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<h3>Welcome to the Shelter Dashboard!</h3><br>
+<form method="POST" id="viewDogs">
+    
+    {% csrf_token %}
+    
+    Shelter account name: <br>
+    <input id="shelterName" type="text" name="shelter"><br>
+    <input id="submitListing" type="submit" value="View Listings">
+</form>
+<div id="listingsContainer">
+    <hr>
+    <button id="viewDog" onclick="#">View</button>
+    <button id="editDog" onclick="#">Edit</button>
+    <button id="deleteDog" onclick="#">Delete</button>
+    <button class="displayButton" onclick="tileView()"><img class="displayImg" src="https://d30y9cdsu7xlg0.cloudfront.net/png/1544627-200.png"></button>
+    <button class="displayButton" onclick="listView()"><img class="displayImg" src="https://d30y9cdsu7xlg0.cloudfront.net/png/576517-200.png" ></button>
+    <br>
+    <div id="listingResults"></div>
+</div>
+{% endblock %}

@@ -1,13 +1,37 @@
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import Dog, Location, PersonalityQualities, PhysicalQualities
+from django.contrib.auth.models import User
+from .models import Dog, Location, PersonalityQualities, PhysicalQualities, Shelter, UserProfile
+
 
 import json
 
 # Helper Functions
+
+"""
+This is a helper function for add_dog_to_db.  Javascript bool values were sent as strings.  Python
+needs them as bools.  This converts them.
+"""
+def str2bool(v):
+  try:
+      return v.lower() in ("true", "True")
+  except Exception as e:
+      return False
+  
+
+def fix_bools(data):
+    data["personality"]["friendly"] = str2bool(data["personality"]["friendly"])
+    data["personality"]["kid_friendly"] = str2bool(data["personality"]["kid_friendly"])
+    data["personality"]["likes_water"] = str2bool(data["personality"]["likes_water"])
+    data["personality"]["likes_cars"] = str2bool(data["personality"]["likes_cars"])
+    data["personality"]["socialized"] = str2bool(data["personality"]["socialized"])
+    data["personality"]["rescue_animal"] = str2bool(data["personality"]["rescue_animal"])
+    data["physical"]["hypoallergenic"] = str2bool(data["physical"]["hypoallergenic"])
+    data["physical"]["shedding"] = str2bool(data["physical"]["shedding"])
+    return data
 """
 This function reduces the nasty json that the Django serailizer produces
 to objects that only contain the fields.
@@ -29,7 +53,9 @@ def reduce_json(data):
     else:
         if isinstance(data, dict):
             if "model" in data:
+                pk = data["pk"]
                 data = data["fields"]
+                data["id"] = pk
             for f in data:
                 data[f] = reduce_json(data[f])
         return data
@@ -63,10 +89,8 @@ def index(request):
 """
 Send a GET request to this address with the zipcode you want the dogs from
 to get all the dogs in that zipcode.
-
 To filter the dogs send a POST request with the same zipcode and a json data
 load that looks like (set fields to null if you don't want to filter on them):
-
 {
   "dog": {
     "sex": "m",
@@ -93,7 +117,6 @@ load that looks like (set fields to null if you don't want to filter on them):
     "rescue_animal": false
   }
 }
-
 """
 @csrf_exempt
 def search(request, zipcode):
@@ -193,8 +216,6 @@ def search(request, zipcode):
                                   personality__in=per_qs,
                                   **dog_data)
 
-        print(json_data)
-
     else:
         dogs = Dog.objects.filter(location__in=locations)
 
@@ -204,3 +225,74 @@ def search(request, zipcode):
     data = json.dumps(reduce_json(json.loads(data)))
 
     return HttpResponse(data, content_type='application/json')
+
+def add_dog(request):
+    message = 'Add New Dog'
+
+    return render(request, 'add_dog.html',{
+        'message': message,
+    })
+
+def view_listings(request):
+    return render(request, 'view_listings.html', {})
+
+def shelter_dogs(request, shelter):
+    s = get_object_or_404(Shelter, name=shelter)
+
+    dogs = Dog.objects.filter(has_shelter=True, shelter=s)
+    dogs_json = queryset_to_json(dogs)
+
+    return HttpResponse(dogs_json, content_type='application/json')
+
+@csrf_exempt
+def add_dog_to_db(request):
+    print(request.body)
+    data = json.loads(request.body)
+    data = fix_bools(data)
+
+    #location
+    l, created_l = Location.objects.get_or_create(
+        city=data["dog"]["city"],
+        state=data["dog"]["state"],
+        zipcode=data["dog"]["zipcode"])
+ 
+    #personality
+    pers, created_pers = PersonalityQualities.objects.get_or_create(
+        friendly=data["personality"]["friendly"],
+        kid_friendly=data["personality"]["kid_friendly"],
+        likes_water =data["personality"]["likes_water"],
+        likes_cars =data["personality"]["likes_cars"],
+        socialized  =data["personality"]["socialized"],
+        rescue_animal = data["personality"]["rescue_animal"])
+
+    #physical
+    phys, created_phys = PhysicalQualities.objects.get_or_create(
+        color=data["physical"]["color"],
+        height=data["physical"]["height"],
+        weight=data["physical"]["weight"],
+        eye_color=data["physical"]["eye_color"],
+        hypoallergenic=data["physical"]["hypoallergenic"],
+        shedding=data["physical"]["shedding"]) 
+
+    #owner
+    form_user = get_object_or_404(User, username=data["user"])
+    user_prof = UserProfile.objects.filter(user = form_user)
+
+    #finally, Dog
+    d = Dog(
+        name = data["dog"]["name"],
+        sex=data["dog"]["sex"],
+        age=data["dog"]["age"],
+        breed=data["dog"]["breed"],
+        bio = data["dog"]["bio"],
+        location = l,
+        personality = pers, 
+        physical = phys,
+        owner = user_prof[0])
+    d.save()
+
+    success = "yes"
+    status = {'success': success}
+
+    return HttpResponse(status, content_type='application/json')
+

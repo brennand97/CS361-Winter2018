@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<script type="text/javascript" src="{% static 'add-dog-script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+
+    <div id="outer-container">
+      <h1>{{ message }}</h1>
+      <h4>Enter the new dog's description below.</h4>
+      <br>
+      <form method="POST" id="add-dog-form">
+
+        {% csrf_token %}
+        <fieldset>
+          <legend>Basic Information</legend>
+          Username <br>
+          <input type="text" name="name" id='user'><br>
+          City <br>
+          <input type="text" name="city" id='city'><br>
+          State <br>
+          <input type="text" name="state" id='state'><br>
+          Zipcode <br>
+          <input type="number" name="zipcode" id='zipcode'><br>
+          Name <br>
+          <input type="text" name="name" id='name'><br>
+          Age <br>
+          <input type="number" name="age" id='age'><br>
+          Sex <br>
+          <input type="radio" name="sex" value="f"> Female<br>
+          <input type="radio" name="sex" value="m"> Male<br>
+          Breed <br>
+          <input type="text" name="breed" id ='breed'><br>
+          Bio <br>
+          <input type="text" name="bio" id='bio'><br>
+
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Physical Characteristics</legend>
+          Color <br>
+          <input type="text" name="color" id = 'color'><br>
+          Height <br>
+          <input type="number" name="height" id = 'height'><br>
+          Weight <br>
+          <input type="number" name="weight" id = 'weight'><br>
+          Eye color <br>
+          <select id = "eye_color">
+            <option name="eye_color" value="any">No preference</option>
+            <option name="eye_color" value="black">Black</option>
+            <option name="eye_color" value="brown">Brown</option>
+            <option name="eye_color" value="grey">Grey</option>
+            <option name="eye_color" value="green">Green</option>
+            <option name="eye_color" value="blue">Blue</option>
+            <option name="eye_color" value="yellow">Yellow</option>
+          </select><br><br>
+          <input type="checkbox" name="hypoallergenic" value="true" id= 'hypoallergenic'> Hypoallergenic?<br>
+          <input type="checkbox" name="shedding" value="true" id ='shedding'> Sheds?<br><br>
+        </fieldset>
+        <fieldset>
+          <legend>Personality Characteristics</legend>
+          <input type="checkbox" name="friendly" value="true" id='friendly'> Friendly<br>
+          <input type="checkbox" name="kid_friendly" value="true" id='kid_friendly'> Kid friendly<br>
+          <input type="checkbox" name="likes_water" value="true" id = 'likes_water'> Likes Water<br>
+          <input type="checkbox" name="likes_cars" value="true" id = 'likes_cars'> Likes Cars<br>
+          <input type="checkbox" name="socialized" value="true" id = 'socialized'> Socialized<br>
+          <input type="checkbox" name="rescue_animal" value="true" id = 'rescue_animal'> Rescue animal<br><br>
+        </fieldset>
+        <input class="button1" type="reset" value="RESET">
+        <input class="button1" type="submit" value="ADD" id = "submit">
+      </form>
+    </div>
+
+{% endblock %}
