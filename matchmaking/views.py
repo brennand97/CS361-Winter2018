@@ -126,7 +126,7 @@ def search(request, zipcode):
     if request.method == 'POST':
 
         try:
-            json_data = json.loads(request.body)
+            json_data = json.loads(request.body.decode('utf-8'))
         except Exception:
             return HttpResponseBadRequest("Need to include a json payload with filter data.")
 
@@ -247,7 +247,7 @@ def shelter_dogs(request, shelter):
 @csrf_exempt
 def add_dog_to_db(request):
     print(request.body)
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode('utf-8'))
     data = fix_bools(data)
 
     #location
