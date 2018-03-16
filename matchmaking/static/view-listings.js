@@ -95,7 +95,7 @@ function bindSubmit(){
 							var baseurl = 'http://localhost:8000/view_dog/';
 							var url = baseurl + dog.id + '/edit/';
 							console.log("hmm in editBtn");
-							window.open(url, '_blank');
+							window.open(url, '_self');
 						});
 					})(editBtn, response[i]);
 					
